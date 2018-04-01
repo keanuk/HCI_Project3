@@ -9,7 +9,7 @@ body {
 }
 
 /*for browsers that don't support semantic tags*/
-header, footer, main, section, nav {
+/* header, footer, main, section, nav {
   display: block;
 }
 
@@ -183,4 +183,4 @@ a {
 
   }
 
-}
+} */

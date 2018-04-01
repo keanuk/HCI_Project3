@@ -3,6 +3,15 @@
 var defaultEnvConfig = require('./default');
 
 module.exports = {
+  secure: {
+    ssl: true,
+    privateKey: './config/sslcerts/key.pem',
+    certificate: './config/sslcerts/cert.pem',
+    caBundle: './config/sslcerts/cabundle.crt'
+  },
+  port: process.env.PORT || 3000,
+  // Binding to 127.0.0.1 is safer in production.
+  host: process.env.HOST || '0.0.0.0',
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGODB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
     options: {},
@@ -25,8 +34,8 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Development Environment'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || 'APP_ID',
-    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    clientID: process.env.FACEBOOK_ID || '291380158062880',
+    clientSecret: process.env.FACEBOOK_SECRET || '7c40e1d30490aa3bb8a938dd237a74d3',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {

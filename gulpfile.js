@@ -22,7 +22,8 @@ var _ = require('lodash'),
   path = require('path'),
   endOfLine = require('os').EOL,
   del = require('del'),
-  semver = require('semver');
+  semver = require('semver'),
+  browserSync = require('browser-sync').create();
 
 // Local settings
 var changedTestFiles = [];
@@ -68,6 +69,16 @@ gulp.task('nodemon-nodebug', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
+
+    // Kick off BrowserSync.
+    // browserSync( {
+    // proxy: "https://mysite.dev",
+    // https: {
+    //     key: "scripts/ssl/ca.key",
+    //     cert: "scripts/ssl/ca.crt"
+    //     }
+    // } );
+
   // Start livereload
   plugins.refresh.listen();
 
