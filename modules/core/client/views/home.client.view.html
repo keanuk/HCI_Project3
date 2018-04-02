@@ -1,4 +1,4 @@
-<section>
+<section ng-app="core" ng-controller="HomeController">
   <div class="container">
     <header class="header">
       <div class="title">
@@ -33,8 +33,9 @@
       <div class="organization-list_item">
         <a href="#">
           <img src="#" alt="">
-          <p>Organization name</p>
+          <h3 ng-bind="alachuaHumane"></h3>
         </a>
+        <p>{{alachuaHumaneEvents}}</p>
       </div>
       <div class="organization-list_item">
         <a href="#">
@@ -59,5 +60,5 @@
     <div><a  class="floating-action-button" href="#">+</a></div>
 
   </div>
-  
+
 </section>
