@@ -1,18 +1,6 @@
 (function () {
   'use strict';
 
-  let at = 'EAACEdEose0cBABZCvjBqpreDZBOmkkKpiuZBwlFq8gTLoZAg7FdDhJSu46hwkqQOlApPZB31OqQmnkz2nXyVzINrDRbqpgbQ2pLegXo3tVbOAJG7zOMWPGeJPJUnpTlrIJz6kjVi4WOPx17smRDqZCgI45UUy8xX5Hp3l8hFY0CR7z0GfLsf421f4qXS37CY52UjZBvmd5u23bqXSKnOovQ';
-
-  let alachuaHumaneEvents = [];
-
-  // getAlachuaHumane();
-  // getAARP();
-  // getSustainableUF();
-  // getShands();
-  // getHarn();
-  // getGatorSmiles();
-  // getGatorPals();
-
   angular
     .module('core')
     .controller('HomeController', HomeController);
@@ -23,7 +11,11 @@
     var vm = this;
     console.log(Authentication);
 
-    $scope.$on('$viewContentLoaded', function(){
+    let at = 'EAACEdEose0cBAJXxwvegb05GxJrmzCC1TfBK3bxKi4R5vZA6EQZBgeuOZCTbolSv3dKVIhOmgvd9SaPvo2cHbJAuXTvyHcLfebn3v1ZA9wwYIGEcQEhGqLaNaCucem1p2iXl1ZA0hjpvvZAbseZC65vwxdXcYPVTfBFJZCMSP6M4l287fQHLg3Pqia3RskZADaYmxZAvDKcZAipgLq7hv41mFvW';
+
+    let orgs = ['alachuahumane.org', 'AARP', 'sustainableuf', 'ShandsArtsinMedicine', 'HarnMuseumofArt', 'gatorsmiles', 'gatorpalsapp2017'];
+
+    vm.orgs = orgs;
 
     window.fbAsyncInit = function() {
       FB.init({
@@ -54,99 +46,29 @@
          console.log('Logged in and authenticated');
          console.log(response);
          // at = response.authResponse.accessToken;
-         getAlachuaHumane($scope);
-         getAARP();
-         getSustainableUF();
-         getShands();
-         getHarn();
-         getGatorSmiles();
-         getGatorPals();
+
+         console.log(vm);
+
+         for(var org in orgs) {
+           populateDB($scope, orgs[org], at, vm);
+         }
+
        }
        else {
          console.log('Not authenticated');
        }
      }
-   });
   }
 
-
-   function getAlachuaHumane($scope) {
-     FB.api('/' + 'alachuahumane.org?fields=name,events' + '&access_token=' + at, function(response) {
-       if(response && !response.error) {
-         console.log(response.name);
-         $scope.alachuaHumane = response.name;
-         $scope.alachuaHumaneEvents = response.events.data[0];
-       }
-       else {
-         console.log(response.error);
-       }
-     })
-   }
-
-   function getAARP() {
-     FB.api('/' + 'AARP?fields=name,events' + '&access_token=' + at, function(response) {
-       if(response && !response.error) {
-         console.log(response);
-       }
-       else {
-         console.log(response.error);
-       }
-     })
-   }
-
-   function getSustainableUF() {
-     FB.api('/' + 'sustainableuf?fields=name,events' + '&access_token=' + at, function(response) {
-       if(response && !response.error) {
-         console.log(response);
-       }
-       else {
-         console.log(response.error);
-       }
-     })
-  }
-
-  function getShands() {
-    FB.api('/' + 'ShandsArtsinMedicine?fields=name,events' + '&access_token=' + at, function(response) {
+  function populateDB($scope, org, at, vm) {
+    FB.api('/' + org + '?fields=name,events' + '&access_token=' + at, function(response) {
       if(response && !response.error) {
         console.log(response);
+        vm.test = response.name;
       }
       else {
         console.log(response.error);
       }
     })
   }
-
-  function getHarn() {
-    FB.api('/' + 'HarnMuseumofArt?fields=name,events' + '&access_token=' + at, function(response) {
-      if(response && !response.error) {
-        console.log(response);
-      }
-      else {
-        console.log(response.error);
-      }
-    })
-  }
-
-  function getGatorSmiles() {
-    FB.api('/' + 'gatorsmiles?fields=name,events' + '&access_token=' + at, function(response) {
-      if(response && !response.error) {
-        console.log(response);
-      }
-      else {
-        console.log(response.error);
-      }
-    })
-  }
-
-  function getGatorPals() {
-    FB.api('/' + 'gatorpalsapp2017?fields=name,events' + '&access_token=' + at, function(response) {
-      if(response && !response.error) {
-        console.log(response);
-      }
-      else {
-        console.log(response.error);
-      }
-    })
-  }
-
 }());

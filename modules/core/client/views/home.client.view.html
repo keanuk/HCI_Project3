@@ -1,4 +1,4 @@
-<section ng-app="core" ng-controller="HomeController">
+<section class="container" ng-controller="HomeController as vm">
   <div class="container">
     <header class="header">
       <div class="title">
@@ -33,27 +33,10 @@
       <div class="organization-list_item">
         <a href="#">
           <img src="#" alt="">
-          <h3 ng-bind="alachuaHumane"></h3>
+          <h2>memes</h2>
+          <h3 ng-bind="vm.test"></h3>
         </a>
-        <p>{{alachuaHumaneEvents}}</p>
-      </div>
-      <div class="organization-list_item">
-        <a href="#">
-          <img src="#" alt="">
-          <p>Organization name</p>
-        </a>
-      </div>
-      <div class="organization-list_item">
-        <a href="#">
-          <img src="#" alt="">
-          <p>Organization name</p>
-        </a>
-      </div>
-      <div class="organization-list_item">
-        <a href="#">
-          <img src="#" alt="">
-          <p>Organization name</p>
-        </a>
+        <p ng-bind="alachuaHumaneEvents"></p>
       </div>
     </section>
 
